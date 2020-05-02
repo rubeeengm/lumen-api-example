@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+
 /** @var \Laravel\Lumen\Routing\Router $router */
 
 /*
@@ -16,3 +18,22 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->get('/example/{id}', function(int $id) {
+    return "Se pasó el parámetro " . $id;
+});
+
+$router->get('/example', ['middleware' => 'example', function() {
+    return [
+        'company' => 'Proday'
+    ];
+}]);
+
+$router->post('/example', function(Request $request) {
+    return [
+        'name' => $request->input('name')
+        , 'lastName' => $request->input('lastName')
+    ];
+});
+
+$router->get('/example-controller', 'ExampleController@index');

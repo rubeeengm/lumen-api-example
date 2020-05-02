@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-class ExampleController extends Controller
-{
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
+use App\Repositories\Interfaces\IExampleRepository;
+
+class ExampleController extends Controller {
+    
+    private IExampleRepository $exampleRepository;
+
+    public function __construct(IExampleRepository $exampleRepository) {
+        $this->exampleRepository = $exampleRepository;
     }
 
-    //
+    public function index() {
+        return $this->exampleRepository->getAll();
+    }
 }

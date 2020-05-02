@@ -15,6 +15,14 @@ class ExampleMiddleware
      */
     public function handle($request, Closure $next)
     {
+        $headerAuthorization = $request->header('Authorization');
+        $isValid = $headerAuthorization && $headerAuthorization === '123456';
+
+
+        if (!$isValid) {
+            return response('Acceso denegado', 401);
+        }
+
         return $next($request);
     }
 }
