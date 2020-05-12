@@ -2,10 +2,21 @@
 
 namespace App\Repositories\Interfaces;
 
-interface IProductRepository {
-    public function paginate();
+use App\Models\Product;
+use Illuminate\Pagination\Paginator;
 
-    public function find(int $id);
+interface IProductRepository {
+    /**
+     * @param int $take
+     * @return Paginator
+     */
+    public function paginate(int $take) : Paginator;
+
+    /**
+     * @param int $id
+     * @return Product|null
+     */
+    public function find(int $id) : ?Product;
 
     public function store($store);
 

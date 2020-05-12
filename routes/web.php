@@ -37,3 +37,8 @@ $router->post('/example', function(Request $request) {
 });
 
 $router->get('/example-controller', 'ExampleController@index');
+
+$router->group(['prefix' => 'products'], function() use ($router) {
+    $router->get('/', 'ProductController@index');
+    $router->get('{id}', 'ProductController@show');
+});
