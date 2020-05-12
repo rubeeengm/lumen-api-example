@@ -2,6 +2,8 @@
 
 namespace App\Repositories;
 
+use App\Dtos\Products\ProductCreateDto;
+use App\Dtos\Products\ProductUpdateDto;
 use App\Models\Product;
 use App\Repositories\Interfaces\IProductRepository;
 use Illuminate\Pagination\Paginator;
@@ -28,13 +30,17 @@ class ProductRepository implements IProductRepository {
         return Product::find($id);
     }
 
-    public function store($store)
-    {
+    /**
+     * @param ProductCreateDto $store
+     */
+    public function store(ProductCreateDto $store) {
         // TODO: Implement store() method.
     }
 
-    public function update($store)
-    {
+    /**
+     * @param ProductUpdateDto $store
+     */
+    public function update(ProductUpdateDto $store) {
         // TODO: Implement update() method.
     }
 

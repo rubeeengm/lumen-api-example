@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Dtos\Products\ProductCreateDto;
+use App\Dtos\Products\ProductUpdateDto;
 use App\Repositories\Interfaces\IProductRepository;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller {
     private IProductRepository $productRepository;
@@ -34,5 +37,23 @@ class ProductController extends Controller {
         }
 
         return $result;
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function store(Request $request) {
+        $store = new ProductCreateDto($request->all());
+
+        return response()->json($store);
+    }
+
+    public function update(int $id, Request $request) {
+        $data = $request->all();
+        $data['id'] = $id;
+        $store = new ProductUpdateDto($data);
+
+        return response()->json($store);
     }
 }

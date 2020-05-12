@@ -41,4 +41,6 @@ $router->get('/example-controller', 'ExampleController@index');
 $router->group(['prefix' => 'products'], function() use ($router) {
     $router->get('/', 'ProductController@index');
     $router->get('{id}', 'ProductController@show');
+    $router->post('/', 'ProductController@store');
+    $router->put('{id}', 'ProductController@update');
 });
