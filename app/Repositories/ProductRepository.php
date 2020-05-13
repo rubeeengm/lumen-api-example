@@ -61,8 +61,10 @@ class ProductRepository implements IProductRepository {
         $entry->save();
     }
 
-    public function destroy(int $id)
-    {
-        // TODO: Implement destroy() method.
+    /**
+     * @param int $id
+     */
+    public function destroy(int $id) : void {
+        Product::destroy($id);
     }
 }

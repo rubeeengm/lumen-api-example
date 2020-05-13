@@ -89,4 +89,13 @@ class ProductController extends Controller {
 
         return response(null,204);
     }
+
+    /**
+     * @param int $id
+     */
+    public function destroy(int $id) {
+        $this->productRepository->destroy($id);
+
+        return response(null, 204);
+    }
 }

@@ -31,5 +31,8 @@ interface IProductRepository {
      */
     public function update(ProductUpdateDto $store) : void;
 
-    public function destroy(int $id);
+    /**
+     * @param int $id
+     */
+    public function destroy(int $id) : void;
 }

@@ -43,4 +43,5 @@ $router->group(['prefix' => 'products'], function() use ($router) {
     $router->get('{id}', 'ProductController@show');
     $router->post('/', 'ProductController@store');
     $router->put('{id}', 'ProductController@update');
+    $router->delete('{id}', 'ProductController@destroy');
 });
