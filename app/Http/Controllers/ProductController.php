@@ -6,6 +6,7 @@ use App\Dtos\Products\ProductCreateDto;
 use App\Dtos\Products\ProductUpdateDto;
 use App\Repositories\Interfaces\IProductRepository;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ProductController extends Controller {
     private IProductRepository $productRepository;
@@ -61,11 +62,31 @@ class ProductController extends Controller {
         return response($result,201);
     }
 
+    /**
+     * @param int $id
+     * @param Request $request
+     * @return \Illuminate\Http\Response|\Laravel\Lumen\Http\ResponseFactory
+     */
     public function update(int $id, Request $request) {
+        //validation
+        $this->validate($request, [
+            'sku' => [
+                'required'
+                , Rule::unique('products')->ignore($id)
+            ]
+            , 'name' => 'required'
+            , 'description' => 'required'
+            , 'price' => 'required|numeric|min:1'
+        ]);
+
+        //mapping
         $data = $request->all();
         $data['id'] = $id;
-        $store = new ProductUpdateDto($data);
+        $entry = new ProductUpdateDto($data);
 
-        return response()->json($store);
+        //updating
+        $this->productRepository->update($entry);
+
+        return response(null,204);
     }
 }

@@ -50,8 +50,15 @@ class ProductRepository implements IProductRepository {
     /**
      * @param ProductUpdateDto $store
      */
-    public function update(ProductUpdateDto $store) {
-        // TODO: Implement update() method.
+    public function update(ProductUpdateDto $store) : void {
+        $entry = Product::find($store->id);
+
+        $entry->sku = $store->sku;
+        $entry->name = $store->name;
+        $entry->description = $store->description;
+        $entry->price = $store->price;
+
+        $entry->save();
     }
 
     public function destroy(int $id)

@@ -28,9 +28,8 @@ interface IProductRepository {
 
     /**
      * @param ProductUpdateDto $store
-     * @return mixed
      */
-    public function update(ProductUpdateDto $store);
+    public function update(ProductUpdateDto $store) : void;
 
     public function destroy(int $id);
 }
