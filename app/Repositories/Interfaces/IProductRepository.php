@@ -2,6 +2,8 @@
 
 namespace App\Repositories\Interfaces;
 
+use App\Dtos\Products\ProductCreateDto;
+use App\Dtos\Products\ProductUpdateDto;
 use App\Models\Product;
 use Illuminate\Pagination\Paginator;
 
@@ -18,9 +20,17 @@ interface IProductRepository {
      */
     public function find(int $id) : ?Product;
 
-    public function store($store);
+    /**
+     * @param ProductCreateDto $store
+     * @return Product
+     */
+    public function store(ProductCreateDto $store) : Product;
 
-    public function update($store);
+    /**
+     * @param ProductUpdateDto $store
+     * @return mixed
+     */
+    public function update(ProductUpdateDto $store);
 
     public function destroy(int $id);
 }

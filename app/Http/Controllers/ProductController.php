@@ -41,12 +41,24 @@ class ProductController extends Controller {
 
     /**
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Response|\Laravel\Lumen\Http\ResponseFactory
      */
     public function store(Request $request) {
+        //validation
+        $this->validate($request, [
+           'sku' => 'required|unique:products'
+           , 'name' => 'required'
+           , 'description' => 'required'
+           , 'price' => 'required|numeric|min:1'
+        ]);
+
+        //mapping
         $store = new ProductCreateDto($request->all());
 
-        return response()->json($store);
+        //creation
+        $result = $this->productRepository->store($store);
+
+        return response($result,201);
     }
 
     public function update(int $id, Request $request) {

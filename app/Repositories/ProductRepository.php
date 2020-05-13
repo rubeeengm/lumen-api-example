@@ -32,9 +32,19 @@ class ProductRepository implements IProductRepository {
 
     /**
      * @param ProductCreateDto $store
+     * @return Product
      */
-    public function store(ProductCreateDto $store) {
-        // TODO: Implement store() method.
+    public function store(ProductCreateDto $store) : Product {
+        $entry = new Product();
+
+        $entry->sku = $store->sku;
+        $entry->name = $store->name;
+        $entry->description = $store->description;
+        $entry->price = $store->price;
+
+        $entry->save();
+
+        return $entry;
     }
 
     /**
