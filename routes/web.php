@@ -40,8 +40,9 @@ $router->get('/example-controller', 'ExampleController@index');
 
 $router->group(['prefix' => 'products'], function() use ($router) {
     $router->get('/', 'ProductController@index');
-    $router->get('{id}', 'ProductController@show');
+    $router->get('/{id}', 'ProductController@show');
     $router->post('/', 'ProductController@store');
-    $router->put('{id}', 'ProductController@update');
-    $router->delete('{id}', 'ProductController@destroy');
+    $router->put('/{id}', 'ProductController@update');
+    $router->post('/{id}/image', 'ProductController@image');
+    $router->delete('/{id}', 'ProductController@destroy');
 });

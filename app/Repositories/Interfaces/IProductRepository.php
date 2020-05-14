@@ -5,6 +5,7 @@ namespace App\Repositories\Interfaces;
 use App\Dtos\Products\ProductCreateDto;
 use App\Dtos\Products\ProductUpdateDto;
 use App\Models\Product;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Pagination\Paginator;
 
 interface IProductRepository {
@@ -30,6 +31,12 @@ interface IProductRepository {
      * @param ProductUpdateDto $store
      */
     public function update(ProductUpdateDto $store) : void;
+
+    /**
+     * @param int $id
+     * @param UploadedFile $file
+     */
+    public function image(int $id, UploadedFile $file) : void;
 
     /**
      * @param int $id

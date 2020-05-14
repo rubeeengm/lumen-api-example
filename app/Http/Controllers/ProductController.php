@@ -43,6 +43,7 @@ class ProductController extends Controller {
     /**
      * @param Request $request
      * @return \Illuminate\Http\Response|\Laravel\Lumen\Http\ResponseFactory
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request) {
         //validation
@@ -66,6 +67,7 @@ class ProductController extends Controller {
      * @param int $id
      * @param Request $request
      * @return \Illuminate\Http\Response|\Laravel\Lumen\Http\ResponseFactory
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function update(int $id, Request $request) {
         //validation
@@ -92,6 +94,26 @@ class ProductController extends Controller {
 
     /**
      * @param int $id
+     * @param Request $request
+     * @return \Illuminate\Http\Response|\Laravel\Lumen\Http\ResponseFactory
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function image(int $id, Request $request) {
+        //validation
+        $this->validate($request, [
+            'image' => 'mimes:jpeg, png, bmp, tiff'
+        ]);
+
+        $this->productRepository->image(
+            $id, $request->file('image')
+        );
+
+        return response(null, 204);
+    }
+
+    /**
+     * @param int $id
+     * @return \Illuminate\Http\Response|\Laravel\Lumen\Http\ResponseFactory
      */
     public function destroy(int $id) {
         $this->productRepository->destroy($id);
