@@ -53,3 +53,5 @@ $router->group(['prefix' => 'orders'], function() use ($router) {
     $router->get('/{id}/items', 'OrderController@items');
     $router->post('/', 'OrderController@store');
 });
+
+$router->post('identity/signin', 'IdentityController@signin');
