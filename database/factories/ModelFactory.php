@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\User;
 use Bezhanov\Faker\Provider\Commerce;
 use Faker\Generator as Faker;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 /*
@@ -22,8 +23,9 @@ use Illuminate\Support\Str;
 
 $factory->define(User::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->email,
+        'name' => $faker->name
+        , 'email' => $faker->email
+        , 'password' => Hash::make('123456')
     ];
 });
 
