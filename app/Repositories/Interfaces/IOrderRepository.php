@@ -21,7 +21,7 @@ interface IOrderRepository {
 
     /**
      * @param OrderCreateDto $store
-     * @return Order|null
+     * @return Order
      */
-    public function store(OrderCreateDto $store) : ?Order;
+    public function store(OrderCreateDto $store) : Order;
 }

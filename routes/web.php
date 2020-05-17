@@ -46,3 +46,10 @@ $router->group(['prefix' => 'products'], function() use ($router) {
     $router->post('/{id}/image', 'ProductController@image');
     $router->delete('/{id}', 'ProductController@destroy');
 });
+
+$router->group(['prefix' => 'orders'], function() use ($router) {
+    $router->get('/', 'OrderController@index');
+    $router->get('/{id}', 'OrderController@show');
+    $router->get('/{id}/items', 'OrderController@items');
+    $router->post('/', 'OrderController@store');
+});

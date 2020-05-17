@@ -13,7 +13,7 @@ class CreateOrdersTable extends Migration {
     public function up() {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->decimal('total',20,2);
+            $table->decimal('total',10,2);
             $table->timestamps();
         });
 
@@ -21,6 +21,7 @@ class CreateOrdersTable extends Migration {
             $table->id();
             $table->integer('quantity');
             $table->decimal('unit_price',10,2);
+            $table->decimal('total',10,2);
             $table->timestamps();
         });
 
