@@ -17,12 +17,39 @@ class OrderController extends Controller {
         $this->orderRepository = $orderRepository;
     }
 
+    /**
+     * @return \Illuminate\Pagination\Paginator|null
+     */
     public function index() {
-
+        return $this->orderRepository->paginate(20);
     }
 
+    /**
+     * @param int $id
+     * @return \App\Models\Order|\Illuminate\Http\Response|\Laravel\Lumen\Http\ResponseFactory
+     */
     public function show(int $id) {
+        $result = $this->orderRepository->find($id);
 
+        if ($result) {
+            return $result;
+        }
+
+        return response('Order not found', 404);
+    }
+
+    /**
+     * @param int $id
+     * @return \Illuminate\Http\Response|\Laravel\Lumen\Http\ResponseFactory
+     */
+    public function items(int $id) {
+        $result = $this->orderRepository->find($id);
+
+        if ($result) {
+            return $result->items()->paginate(1);
+        }
+
+        return response('Order not found', 404);
     }
 
     /**

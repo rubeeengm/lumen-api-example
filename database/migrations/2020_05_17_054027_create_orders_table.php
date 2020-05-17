@@ -15,6 +15,7 @@ class CreateOrdersTable extends Migration {
             $table->id();
             $table->decimal('total',10,2);
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::create('orders_detail', function (Blueprint $table) {
@@ -23,6 +24,7 @@ class CreateOrdersTable extends Migration {
             $table->decimal('unit_price',10,2);
             $table->decimal('total',10,2);
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::table('orders', function (Blueprint $table) {

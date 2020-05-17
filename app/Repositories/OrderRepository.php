@@ -12,24 +12,21 @@ use Illuminate\Support\Facades\DB;
 class OrderRepository implements IOrderRepository {
 
     /**
-     * @param int $take
-     * @return Paginator|null
+     * @inheritDoc
      */
     public function paginate(int $take)  : ?Paginator {
-        return null;
+        return Order::simplePaginate($take);
     }
 
     /**
-     * @param int $id
-     * @return Order|null
+     * @inheritDoc
      */
     public function find(int $id) : ?Order {
-        return null;
+        return Order::find($id);
     }
 
     /**
-     * @param OrderCreateDto $store
-     * @return Order
+     * @inheritDoc
      */
     public function store(OrderCreateDto $store) : Order {
         $entry = new Order();
