@@ -16,7 +16,10 @@ use Illuminate\Http\Request;
 */
 
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+    return [
+        'version' => $router->app->version()
+        , 'environment' =>  $router->app->environment()
+    ];
 });
 
 $router->get('/example/{id}', function(int $id) {
