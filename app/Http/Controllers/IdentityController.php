@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Repositories\Exceptions\AccessDeniedEception;
 use App\Repositories\Interfaces\IIdentityRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class IdentityController extends Controller {
     private IIdentityRepository $identityRepository;
@@ -32,5 +33,9 @@ class IdentityController extends Controller {
         } catch (AccessDeniedEception $ex) {
             return response($ex->getMessage(), 400);
         }
+    }
+
+    public function test() {
+        return Auth::user();
     }
 }

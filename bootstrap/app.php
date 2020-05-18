@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\Authenticate;
 use App\Http\Middleware\ExampleMiddleware;
 
 require_once __DIR__.'/../vendor/autoload.php';
@@ -83,7 +84,8 @@ $app->configure('app');
 
 #registro de middleware
 $app->routeMiddleware([
-    'example' => App\Http\Middleware\ExampleMiddleware::class,
+    'example' => App\Http\Middleware\ExampleMiddleware::class
+    , 'auth' => Authenticate::class
 ]);
 
 /*
@@ -99,7 +101,7 @@ $app->routeMiddleware([
 
  $app->register(App\Providers\AppServiceProvider::class);
  $app->register(App\Providers\RepositoryServiceProvider::class);
-// $app->register(App\Providers\AuthServiceProvider::class);
+ $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 
 /*
