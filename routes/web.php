@@ -52,7 +52,10 @@ $router->group(['middleware' => 'auth', 'prefix' => 'orders'], function() use
     $router->get('/', 'OrderController@index');
     $router->get('/{id}', 'OrderController@show');
     $router->get('/{id}/items', 'OrderController@items');
-    $router->post('/', 'OrderController@store');
+    $router->post('/', [
+        'middleware' => 'role:admin'
+        , 'uses' => 'OrderController@store'
+    ]);
 });
 
 $router->post('identity/signin', 'IdentityController@signin');

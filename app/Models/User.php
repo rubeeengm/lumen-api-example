@@ -13,6 +13,13 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     use Authenticatable, Authorizable;
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function roles() {
+        return $this->belongsToMany(Role::class, 'user_roles');
+    }
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array

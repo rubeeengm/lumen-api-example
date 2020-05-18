@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Middleware\Authenticate;
-use App\Http\Middleware\ExampleMiddleware;
+use App\Http\Middleware\RoleMiddleware;
 
 require_once __DIR__.'/../vendor/autoload.php';
 
@@ -86,6 +86,7 @@ $app->configure('app');
 $app->routeMiddleware([
     'example' => App\Http\Middleware\ExampleMiddleware::class
     , 'auth' => Authenticate::class
+    , 'role' => RoleMiddleware::class
 ]);
 
 /*
